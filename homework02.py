@@ -1,7 +1,7 @@
 from pyqgis_scripting_ext.core import *
 
 
-filePath = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/stations.txt"
+filePath = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/data/stations.txt"
 
 with open(filePath, "r") as file:
     readLines = file.readlines()

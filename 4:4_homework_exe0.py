@@ -1,6 +1,6 @@
 from pyqgis_scripting_ext.core import *
 
-filePath = "//Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/02_exe0_geometries.csv"
+filePath = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/data/02_exe0_geometries.csv"
 
 with open(filePath, "r") as file:
     lines = file.readlines()

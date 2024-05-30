@@ -1,8 +1,8 @@
 #exercize2 
-folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/programming_refresh/"
+folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/data"
 
 
-csvPath = f"{folder}01_exe2_data.csv"
+csvPath = f"{folder}/01_exe2_data.csv"
 
 with open(csvPath, 'r') as file:
     lines = file.readlines()

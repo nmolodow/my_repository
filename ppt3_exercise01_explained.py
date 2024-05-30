@@ -3,7 +3,7 @@ from pyqgis_scripting_ext.core import *
 folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/"
 filePath = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/data/stations.txt"
 
-HMap.remove_layers_by_name(["OpenStreetMap", "stationsLayer"])
+HMap.remove_layers_by_name(["OpenStreetMap", "stations"])
 
 osm = HMap.get_osm_layer()
 HMap.add_layer(osm)
@@ -11,15 +11,15 @@ HMap.add_layer(osm)
 #create a schema, which dfines what we want in this new layer. 
 #Defining the field and the type in the attribute table
 schema = {
-    "STAID": "Integer",
-    "STANAME":"string",
-    "CN": "string",
-    "LAT": "Float",
-    "LON": "Float",
-    "HGHT": "double"
+    "statid": "Integer",
+    "statname":"string",
+    "cn": "string",
+    "lat": "Float",
+    "lon": "Float",
+    "hght": "double"
 }
 
-stations = HVectorLayer.new("stationsLayer", "Point", "EPSG:4326", schema)
+stationsLayer = HVectorLayer.new("stations", "Point", "EPSG:4326", schema)
 
 with open(filePath, "r") as file:
     readLines = file.readlines()
@@ -52,17 +52,24 @@ for line in readLines[1:]: #removed the first line because it was titles
     # print(convLat1, convLat2, convLon1, convLon2)
     # print(latfinal, lonfinal)
     
-    point = HPoint(lonfinal, latfinal)
+    point = HPoint(lonfinal, latfinal) #xy, not yx
+    attributes = [
+        statid, 
+        statname,
+        cn,
+        latfinal,
+        lonfinal,
+        hght
+    ]
+    stationsLayer.add_feature(point, attributes)
 
-    stations.add_feature(point, [statid, statname, cn, latfinal, lonfinal, hght])
+newPath = folder + "stations.gpkg" #we are creating a new path to save 
 
-newPath = folder + "stationsLayer.gpkg" #we are creating a new path to save 
-
-error = stations.dump_to_gpkg(newPath, overwrite=True)
+error = stationsLayer.dump_to_gpkg(newPath, overwrite=True)
 if error: 
     print(error)
 
-new_stationsLayer = HVectorLayer.open(newPath, "stationsLayer")
+new_stationsLayer = HVectorLayer.open(newPath, "stations")
 HMap.add_layer(new_stationsLayer)
 
 

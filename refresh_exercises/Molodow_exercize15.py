@@ -1,8 +1,8 @@
-folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/programming_refresh/"
+folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/data"
 
 
 
-csvPath = f"{folder}stations.txt"
+csvPath = f"{folder}/stations.txt"
 with open(csvPath, "r") as file:
     lines = file.readlines()
 firstline = lines[0]

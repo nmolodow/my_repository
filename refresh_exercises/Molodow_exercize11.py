@@ -1,7 +1,7 @@
-folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/programming_refresh/"
+folder = "/Users/nickmolodow/Documents/2ndsemester/Advanced_GIS/data"
 
 
-csvPath = f"{folder}01_exe11_data.csv"
+csvPath = f"{folder}/01_exe11_data.csv"
 
 with open(csvPath, "r") as file:
     lines = file.readlines()
